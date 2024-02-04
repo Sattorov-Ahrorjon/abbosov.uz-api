@@ -19,7 +19,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         if instance.image and self.context:
-            rep['image'] = self.context.get('request').build_absolute_uri(instance.image)
+            rep['image'] = self.context.get('request').build_absolute_uri(rep.get('image'))
         else:
             rep['image'] = None
         return rep
@@ -53,7 +53,7 @@ class AboutMeSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         if instance.cv_media and self.context:
-            rep['cv_media'] = self.context.get('request').build_absolute_uri(instance.cv_media)
+            rep['cv_media'] = self.context.get('request').build_absolute_uri(rep.get('cv_media'))
         else:
             rep['cv_media'] = None
         return rep
@@ -67,7 +67,7 @@ class BlogImageSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         if instance.image and self.context:
-            rep['image'] = self.context.get('request').build_absolute_uri(instance.image)
+            rep['image'] = self.context.get('request').build_absolute_uri(rep.get("image"))
         else:
             rep['image'] = None
         return rep

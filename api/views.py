@@ -24,11 +24,18 @@ class AboutMeView(APIView):
         return Response(data={'about_me': serializer}, status=status.HTTP_200_OK)
 
 
-class BlogView(APIView):
+class BlogListView(APIView):
     def get(self, request):
         blogs = Blog.objects.all()
         serializer = BlogSerializer(blogs, context={'request': request}, many=True).data
         return Response(data={"blogs": serializer}, status=status.HTTP_200_OK)
+
+
+class BlogDetailView(APIView):
+    def get(self, request, pk):
+        blog = Blog.objects.filter(id=pk).first()
+        serializer = BlogSerializer(blog, context={'request': request}).data
+        return Response(data={"blog": serializer}, status=status.HTTP_200_OK)
 
 
 class SocialView(APIView):
@@ -40,8 +47,8 @@ class SocialView(APIView):
 
 class ExperienceListView(APIView):
     def get(self, request):
-        experience = Experience.objects.all()
-        serializer = ExperienceSerializer(experience, many=True, context={'request': request}).data
+        experiments = Experience.objects.all()
+        serializer = ExperienceSerializer(experiments, many=True, context={'request': request}).data
         return Response(data={'experience': serializer}, status=status.HTTP_200_OK)
 
 

@@ -52,7 +52,8 @@ class AboutMeAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {'fields': (('name', 'phone'),)}),
-        (None, {'fields': (('email', 'lang'),)})
+        (None, {'fields': (('email', 'lang'),)}),
+        ("Cv media", {'fields': ('cv_media',)})
     )
 
 
