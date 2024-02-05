@@ -38,6 +38,14 @@ class ContactSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'email', 'subject', 'message')
 
 
+# {
+# "name": "Name",
+# "email": "exam@gmail.com",
+# "subject": "Subject",
+# "message": "Message"
+# }
+
+
 class SocialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Social
